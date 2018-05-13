@@ -1,0 +1,61 @@
+<!-- DOCTYPE HTML -->
+<html>
+<head>
+<title>Your First React Project</title>
+</head>
+<body>
+<div id="content"></div>
+<script src="https://fb.me/react-0.14.6.js"></script>
+<script src="https://fb.me/react-dom-0.14.6.js"></script>
+<script src="http://fb.me/JSXTransformer-0.12.1.js"></script>
+<script type="text/jsx">
+
+var DATA = {
+	name: 'Dishant Kaushik',
+	imgURL: 'http://lorempixel.com/200/200/',
+	hobbyList: ['coding', 'designing', 'playing a guitar']
+}
+
+var App = React.createClass({
+	render: function(){
+		return (
+			<div>
+				<Profile name={this.props.profileData.name} imgUrl={this.props.profileData.imgURL}/>
+				<Hobbies hobbyList={this.props.profileData.hobbyList}/>
+			</div>
+		)
+	}
+});
+
+var Profile = React.createClass({
+	render: function(){
+		return (
+			<div>
+				<h3>{this.props.name}</h3>
+				<img src={this.props.imgUrl} alt="Photo" />
+			</div>
+		)
+	}
+});
+
+var Hobbies = React.createClass({
+	render: function(){
+		var hobbies = this.props.hobbyList.map(function(hobby, index){
+			return (<li key={index}>{hobby}</li>);
+		});
+		return(
+			<div>
+				<h5>My hobbies:</h5>
+				<ul>
+					{hobbies}
+				</ul>
+			</div>
+		)
+	}
+});
+
+ReactDOM.render(<App profileData={DATA}/>, document.getElementById('content'));
+
+</script>
+</body>
+</html>
